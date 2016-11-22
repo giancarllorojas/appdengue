@@ -1,0 +1,10 @@
+<?php
+/**
+ * Arquivo de configurações para execução
+ * Preencha os campos e remova o .exemple do final da extensão para rodar a aplicação
+ */
+
+$banco['host'] = 'host';
+$banco['usuario'] = 'user';
+$banco['senha'] = 'senha';
+$banco['database'] = 'database';

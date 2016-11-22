@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+}
+
+#map {
+    height: 100vh;
+    position: relative;
+    width: 100%;
+}
+
+.maps-frame {
+    height: 430px;
+    width: 100%;
+}
+
+.kd-tabbed-vert.header-links .kd-tabbutton a {
+    color: #757575;
+    display: inline-block;
+    height: 100%;
+    padding: 0 24px;
+    width: 100%;
+}
+
+.kd-tabbed-vert.header-links .kd-tabbutton {
+    padding: 0;
+}
+
+.kd-tabbed-vert.header-links .kd-tabbutton.selected a {
+    color: #03a9f4;
+}
+
+.kd-tabbed-vert.header-links .kd-tabbutton a:focus {
+    text-decoration: none;
+}
+
+p.top-desc {
+    padding: 1em 1em .1em 1em;
+}
+
+p.bottom-desc {
+    padding: 0em 1em 1em 1em;
+}
+
+a[href^="http://maps.google.com/maps"]{display:none !important}
+a[href^="https://maps.google.com/maps"]{display:none !important}
+
+.gmnoprint a, .gmnoprint span, .gm-style-cc {
+    display:none;
+}
+.gmnoprint div {
+    background:none !important;
+}
+
+#menu{
+    font-family: 'Roboto', sans-serif;
+    position:fixed;
+    width:250px;
+    height:500px;
+    background-color: rgba(10, 15, 33, 0.5);
+    z-index:99999;
+    right:30px;
+    top: 25vh;
+    border-radius:5px;
+    color:white;
+}
+.menu_titulo{
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:5px;
+    padding-bottom:5px;
+    background-color:#2e6da4;
+}
