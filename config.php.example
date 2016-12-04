@@ -8,3 +8,6 @@ $banco['host'] = 'host';
 $banco['usuario'] = 'user';
 $banco['senha'] = 'senha';
 $banco['database'] = 'database';
+
+$config['base_url'] = 'http://url/pasta_app/';
+$config['gmaps_key'] = 'key_do_gmaps';

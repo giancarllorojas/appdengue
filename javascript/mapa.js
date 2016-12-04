@@ -1,48 +1,8 @@
-(function($) {
-    $.fn.drags = function(opt) {
 
-        opt = $.extend({handle:"",cursor:"move"}, opt);
-
-        if(opt.handle === "") {
-            var $el = this;
-        } else {
-            var $el = this.find(opt.handle);
-        }
-
-        return $el.css('cursor', opt.cursor).on("mousedown", function(e) {
-            if(opt.handle === "") {
-                var $drag = $(this).addClass('draggable');
-            } else {
-                var $drag = $(this).addClass('active-handle').parent().addClass('draggable');
-            }
-            var z_idx = $drag.css('z-index'),
-                drg_h = $drag.outerHeight(),
-                drg_w = $drag.outerWidth(),
-                pos_y = $drag.offset().top + drg_h - e.pageY,
-                pos_x = $drag.offset().left + drg_w - e.pageX;
-            $drag.css('z-index', 1000).parents().on("mousemove", function(e) {
-                $('.draggable').offset({
-                    top:e.pageY + pos_y - drg_h,
-                    left:e.pageX + pos_x - drg_w
-                }).on("mouseup", function() {
-                    $(this).removeClass('draggable').css('z-index', z_idx);
-                });
-            });
-            e.preventDefault(); // disable selection
-        }).on("mouseup", function() {
-            if(opt.handle === "") {
-                $(this).removeClass('draggable');
-            } else {
-                $(this).removeClass('active-handle').parent().removeClass('draggable');
-            }
-        });
-
-    }
-})(jQuery);
-
-$('#menu').drags();
 
 var map;
+var markers = [];
+var markerCluster;
 function inicializa() {
     var estilo = new google.maps.StyledMapType(estilo_json);
     this.map = new google.maps.Map(document.getElementById('map'), {
@@ -54,4 +14,60 @@ function inicializa() {
 
     this.map.mapTypes.set('estilo', estilo);
     this.map.setMapTypeId('estilo');
+	$("#adicionar").click(function(){
+		ano = $('#ano').val();
+		mes = $('#mes').val();
+		pega_dados(ano, mes);
+	});
+	$("#go").click(function(){
+		ano = $('#ano').val();
+		mes = $('#mes').val();
+		pega_dados(ano, mes);
+	});
+	pega_dados(2012, 01);
+}
+
+function pega_dados(ano, mes){
+	console.log('hellow');
+	var ano, mes;
+	$.ajax({
+		url: '/appdengue/?p=notificacoes',
+		method: 'GET',
+		data: {'ano': ano, 'mes': mes},
+		dataType: "json",
+		success: function(data) {
+			limpa_marcadores();
+			for(var i = 0; i < data.length; i++){
+				coloca_marcador(data[i]);
+			}
+			console.log(markers);
+			markerCluster = new MarkerClusterer(map, markers, {
+            	magePath: 'dengueapp/images'
+			});
+			//console.log(data);
+		},
+		error: function(ts) { 
+			console.log(ts.responseText);
+		}
+	});
+}
+
+function coloca_marcador(linha){
+	var marker = new google.maps.Marker({
+		position: new google.maps.LatLng(parseFloat(linha[2]), parseFloat(linha[1]))
+	});
+	marker.addListener('click', function() {
+		console.log(linha);
+	});
+	markers.push(marker);
+	
+	//console.log('m')
+};
+
+function limpa_marcadores(remover) {
+	if(markerCluster != null){
+		console.log('hello');
+		markerCluster.setMap(null);
+		markers = [];
+	}
 }

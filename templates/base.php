@@ -8,7 +8,32 @@
 </head>
 <body>
     <div id="menu">
-        <div class="menu_titulo"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> OPÇÕES <span class="glyphicon glyphicon-chevron-up" aria-hidden="true" style="float:right"></span> </div>
+        <div class="menu_titulo"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> NAVEGAÇÃO <span class="glyphicon glyphicon-chevron-up" aria-hidden="true" style="float:right"></span> </div>
+		<div class="form-group">
+		  <label for="sel1">Ano:</label>
+		  <select class="form-control input-sm" id="ano">
+			<option>2012</option>
+			<option>2013</option>
+			<option>2014</option>
+			<option>2015</option>
+		  </select>
+		  <label for="sel1">Mês:</label>
+		  <select class="form-control input-sm" id="mes">
+			<option>01</option>
+			<option>02</option>
+			<option>03</option>
+			<option>04</option>
+			<option>05</option>
+			<option>06</option>
+			<option>07</option>
+			<option>08</option>
+			<option>09</option>
+			<option>10</option>
+			<option>11</option>
+			<option>12</option>
+		  </select>
+		  <button type="button" id="go" class="btn btn-primary">Visualizar</button>
+		</div>
     </div>
     <div id="map"></div>
 
@@ -17,5 +42,6 @@
     <script src="<?=$config['base_url']?>/javascript/mapa_estilo.js"></script>
     <script src="<?=$config['base_url']?>/javascript/mapa.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=<?=$config['gmaps_key']?>&callback=inicializa&language=pt-br" async defer></script>
+	<script src="<?=$config['base_url']?>/javascript/markerclusterer.js"></script>
 </body>
 </html>
