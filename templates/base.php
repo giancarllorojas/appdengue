@@ -34,9 +34,11 @@
 		  </select>
 		  <button type="button" id="go" class="btn btn-primary">Visualizar</button>
 		</div>
+		<button type="button" id="unis" class="btn btn-primary">Unidades</button>
     </div>
     <div id="map"></div>
 
+<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script src="<?=$config['base_url']?>/javascript/jquery-3.1.1.min.js"></script>
     <script src="<?=$config['base_url']?>/javascript/bootstrap.min.js"></script>
     <script src="<?=$config['base_url']?>/javascript/mapa_estilo.js"></script>

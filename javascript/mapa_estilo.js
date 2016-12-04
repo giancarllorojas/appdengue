@@ -1,4 +1,5 @@
 estilo_json = {
+	
 default: null,
     silver: [
     {
@@ -25,7 +26,7 @@ default: null,
     {
         featureType: 'poi',
         elementType: 'geometry',
-        stylers: [{color: '#eeeeee'}]
+        stylers: [{ visibility: "off" }, {color: '#eeeeee'}]
     },
     {
         featureType: 'poi',

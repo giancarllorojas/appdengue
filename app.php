@@ -31,6 +31,20 @@ class App {
 		return $this->con->query($sql);
 	}
 	public function pega_notificacao($id){
-		return $this->con->query("SELECT * FROM m_notificacao where ID_NOTIF = $id")->fetch();
+		$sql = "SELECT n.ID_NOTIF , n.DT_NOTIFIC, g.ID_OCUPA_N, g.CS_RACA, g.CS_ESCOL_N, p.RESUL_SORO, p.RESUL_VI_N, p.RESUL_PCR_, p.HISTOPA_N, p.IMUNOH_N, p.PLAQ_MENOR, p.SOROTIPO, u.ID_UNIDADE, u.RAZAOSOCIAL, u.TIPODEESTABELECIMENTO as EST_TIPO 
+	from m_notificacao n 
+	left join m_procedimentos p
+	on n.ID_NOTIF = p.ID_NOTIF
+	left join m_grupo g
+	on n.ID_GRUPO = g.ID_GRUPO
+	left join m_unidade u
+	on n.ID_UNIDADE = u.ID_UNIDADE
+	where n.ID_NOTIF = $id";
+		return $this->con->query($sql)->fetchObject();
+	}
+	
+	public function pega_unidades(){
+		$sql = "SELECT * FROM m_unidade";
+		return $this->con->query($sql);
 	}
 }
