@@ -54,8 +54,9 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
 #menu{
     font-family: 'Roboto', sans-serif;
     position:fixed;
-    width:250px;
-    height:500px;
+	font-size:11px;
+    width:232px;
+    height:200px;
 	max-height: 70vh;
     background-color: rgba(10, 15, 33, 0.5);
     z-index:99999;
@@ -76,5 +77,34 @@ width:auto;
 display:inline-block;
 }
 .form-group{
-	padding:10px !important;
+	padding:12px !important;
+	margin-bottom:1px;
+}
+#botoes{
+	margin-left:10px;
+}
+#mais{
+	margin-top:5px;
+	margin-left:35px;
+}
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -ms-animation: spin .7s infinite linear;
+    -webkit-animation: spinw .7s infinite linear;
+    -moz-animation: spinm .7s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+  
+@-webkit-keyframes spinw {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@-moz-keyframes spinm {
+    from { -moz-transform: rotate(0deg);}
+    to { -moz-transform: rotate(360deg);}
 }

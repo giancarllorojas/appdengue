@@ -3,16 +3,16 @@
 <table class="table table-sm">
 	<thead>
 	  <tr>
-		<th>Ocupação</th>
 		<th>Raça</th>
 		<th>Escolaridade</th>
+		<th>Ocupação</th>
 	  </tr>
 	</thead>
 	<tbody>
 	  <tr>
-		<td><?=$n->ID_OCUPA_N?></td>
-		<td><?=$n->CS_RACA?></td>
-		<td><?=$n->CS_ESCOL_N?></td>
+		<td><?=$n->RACA?></td>
+		<td><?=$n->ESCOLARIDADE?></td>
+		<td><?=$n->OCUPACAO?></td>
 	  </tr>
 	</tbody>
 </table>
@@ -20,32 +20,35 @@
 <table class="table table-sm">
 	<thead>
 	  <tr>
-		<th>SORO</th>
-		<th>VIRAL</th>
-		<th>PCR</th>
-		<th>HISTOPA_N</th>
-		<th>IMUNOH_N</th>
-		<th>PLAQ_MENOR</th>
-		<th>SOROTIPO</th>
+		<?php
+		if(!empty($procedimentos)){
+			echo "<th>Procedimento</th>
+		<th>Resultado</th>";
+		}else{
+			echo "Nenhum procedimento realizado";
+		}
+		?>
+		
 	  </tr>
 	</thead>
 	<tbody>
-	  <tr>
-		<td><?=$n->RESUL_SORO?></td>
-		<td><?=$n->RESUL_VI_N?></td>
-		<td><?=$n->RESUL_PCR_?></td>
-		<td><?=$n->HISTOPA_N?></td>
-		<td><?=$n->IMUNOH_N?></td>
-		<td><?=$n->PLAQ_MENOR?></td>
-		<td><?=$n->SOROTIPO?></td>
-	  </tr>
+	  <?php
+	  	foreach($procedimentos as $p){
+			$proc = $p['PROCEDIMENTO'];
+			$resu = $p['RESULTADO'];
+			echo "<tr>";
+			echo "<td>$proc</td>";
+			echo "<td>$resu</td>";
+			echo "</tr>";
+		}
+	  ?>
 	</tbody>
 </table>
 
 <h5>Unidade de tratamento:</h5> 
 <?php 
-	if($n->ID_UNIDADE != NULL){
-		echo $n->ID_UNIDADE;
+	if($n->UNIDADE != NULL){
+		echo $n->UNIDADE;
 	}else{
 		echo "Sem informações";
 	}

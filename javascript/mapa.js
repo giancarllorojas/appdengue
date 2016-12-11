@@ -17,9 +17,9 @@ function inicializa() {
 	  },
 	};
     this.map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -22.94242, lng: -43.14486},
+        center: {lat: -22.95131191, lng: -43.24877932},
         scrollwheel: true,
-        zoom: 9,
+        zoom: 10,
         mapTypeControl: false
     });
 
@@ -35,26 +35,69 @@ function inicializa() {
 		mes = $('#mes').val();
 		pega_dados(ano, mes, 'notificacoes');
 	});
-	$("#unis").click(function(){
-		pega_dados(0, 0, 'unidades');
-	});
+	$("#prox").click(function(){
+		var ano, mes, n_ano, n_mes;
+		ano = parseInt($("#ano").val());
+		mes = parseInt($("#mes").val());
+		n_mes = mes + 1;
+		n_ano = ano;
+		if(n_mes > 12){
+			if(ano <2014){
+				n_mes = 1;
+				n_ano = ano+1;
+			}else{
+				n_mes = 1;
+				n_ano = 2010;
+			}
+		}
+		if(n_mes <10){
+			n_mes = "0" + n_mes;
+		}
+		$("#ano").val(n_ano);
+		$("#mes").val(n_mes);
+	})
+	$("#ant").click(function(){
+		var ano, mes, n_ano, n_mes;
+		ano = parseInt($("#ano").val());
+		mes = parseInt($("#mes").val());
+		n_mes = mes - 1;
+		n_ano = ano;
+		if(n_mes < 1){
+			if(ano > 2010){
+				n_mes = 12;
+				n_ano = ano-1;
+			}else{
+				n_mes = 12;
+				n_ano = 2014;
+			}
+		}
+		if(n_mes <10){
+			n_mes = "0" + n_mes;
+		}
+		console.log(n_ano);
+		$("#ano").val(n_ano);
+		$("#mes").val(n_mes);
+	})
 	pega_dados(2012, 01, 'notificacoes');
 }
 
 function pega_dados(ano, mes, tipo){
 	//console.log('hellow');
 	var ano, mes, url;
+	//$("#go").button('loading');
 	$.ajax({
 		url: '/appdengue/?p=' + tipo,
 		method: 'GET',
 		data: {'ano': ano, 'mes': mes},
 		dataType: "json",
 		success: function(data) {
-			limpa_marcadores();
+			markers = [];
+			
 			for(var i = 0; i < data.length; i++){
 				coloca_marcador(data[i], tipo);
 			}
 			console.log(markers);
+			limpa_marcadores();
 			markerCluster = new MarkerClusterer(map, markers, {
             	imagePath: '/appdengue/images/'
 			});
@@ -105,6 +148,5 @@ function limpa_marcadores(remover) {
 	if(markerCluster != null){
 		console.log('hello');
 		markerCluster.setMap(null);
-		markers = [];
 	}
 }

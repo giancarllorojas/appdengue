@@ -32,13 +32,18 @@ if(isset($_GET['p'])){
 		case 'notificacao':
 			if(isset($_GET['id'])){
 				$n = $a->pega_notificacao($_GET['id']);
-				$date = DateTime::createFromFormat('Y-m-d H:i:s', $n->DT_NOTIFIC);
+				$procedimentos = $a->pega_procedimentos($_GET['id']);
+				$date = DateTime::createFromFormat('Y-m-d H:i:s', $n->DATA);
 				$n->data = $date->format('\N\o\t\i\f\i\c\a\d\o \\n\o \d\i\a d \d\e M \d\e Y \à\s H:i');
 				include("templates/notificacao.php");
 			}
 			break;
-		case 'unidades':
-			$n = $a->pega_unidades();
+		case 'info':
+			$casos_ano = $a->casos_por_ano();
+			$casos_tipo = $a->casos_por_tipo();
+			$casos_grupo = $a->casos_por_grupo();
+			$casos_mes_por = $a->casos_por_mes_por();
+			include("templates/info.php");
 			break;
 	}
 }else{

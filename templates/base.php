@@ -12,10 +12,11 @@
 		<div class="form-group">
 		  <label for="sel1">Ano:</label>
 		  <select class="form-control input-sm" id="ano">
-			<option>2012</option>
+			<option>2010</option>
+			<option>2011</option>
+			<option selected>2012</option>
 			<option>2013</option>
 			<option>2014</option>
-			<option>2015</option>
 		  </select>
 		  <label for="sel1">Mês:</label>
 		  <select class="form-control input-sm" id="mes">
@@ -32,9 +33,15 @@
 			<option>11</option>
 			<option>12</option>
 		  </select>
-		  <button type="button" id="go" class="btn btn-primary">Visualizar</button>
+		  
 		</div>
-		<button type="button" id="unis" class="btn btn-primary">Unidades</button>
+		
+		<div id="botoes">
+			<button type="button" id="ant" class="btn btn-primary"><<</button>
+			<button type="button" id="go" class="btn btn-primary">Visualizar</button>
+			<button type="button" id="prox" class="btn btn-primary">>></button>
+		</div>
+		<a href="<?=$config['base_url']?>?p=info" target="_blank"><button type="button" id="mais" class="btn btn-primary">Mais informações</button></a>
     </div>
     <div id="map"></div>
 
